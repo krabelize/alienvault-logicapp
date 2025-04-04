@@ -1,0 +1,119 @@
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "type": "object",
+            "properties": {
+                "ipAddress": {
+                    "type": "string"
+                },
+                "isPublic": {
+                    "type": "boolean"
+                },
+                "ipVersion": {
+                    "type": "integer"
+                },
+                "isWhitelisted": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "abuseConfidenceScore": {
+                    "type": "integer"
+                },
+                "countryCode": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "usageType": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "isp": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "hostnames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "countryName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "totalReports": {
+                    "type": "integer"
+                },
+                "numDistinctUsers": {
+                    "type": "integer"
+                },
+                "lastReportedAt": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time"
+                },
+                "reports": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "reportedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "comment": {
+                                "type": "string"
+                            },
+                            "categories": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "reporterId": {
+                                "type": "integer"
+                            },
+                            "reporterCountryCode": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "reporterCountryName": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "ipAddress",
+                "isPublic",
+                "ipVersion",
+                "abuseConfidenceScore",
+                "countryCode",
+                "isp",
+                "domain",
+                "hostnames",
+                "totalReports",
+                "numDistinctUsers"
+            ]
+        }
+    }
+}
