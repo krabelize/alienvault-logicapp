@@ -1,119 +1,519 @@
 {
     "type": "object",
     "properties": {
-        "data": {
+        "whois": {
+            "description": "URL for WHOIS information on the indicator.",
+            "type": "string",
+            "format": "url"
+        },
+        "reputation": {
+            "description": "Reputation score of the indicator.",
+            "type": "integer"
+        },
+        "indicator": {
+            "description": "The indicator itself (e.g., IP address).",
+            "type": "string"
+        },
+        "type": {
+            "description": "Type of the indicator (e.g., IPv4).",
+            "type": "string"
+        },
+        "type_title": {
+            "description": "Human-readable title for the indicator type.",
+            "type": "string"
+        },
+        "base_indicator": {
             "type": "object",
             "properties": {
-                "ipAddress": {
+                "id": {
+                    "description": "Unique identifier for the indicator.",
+                    "type": "integer"
+                },
+                "indicator": {
+                    "description": "The indicator value.",
                     "type": "string"
                 },
-                "isPublic": {
-                    "type": "boolean"
-                },
-                "ipVersion": {
-                    "type": "integer"
-                },
-                "isWhitelisted": {
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "abuseConfidenceScore": {
-                    "type": "integer"
-                },
-                "countryCode": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "usageType": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "isp": {
+                "type": {
+                    "description": "Type of the indicator.",
                     "type": "string"
                 },
-                "domain": {
+                "title": {
+                    "description": "Title of the indicator.",
                     "type": "string"
                 },
-                "hostnames": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "description": {
+                    "description": "Description of the indicator.",
+                    "type": "string"
                 },
-                "countryName": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "content": {
+                    "description": "Content related to the indicator.",
+                    "type": "string"
                 },
-                "totalReports": {
+                "access_type": {
+                    "description": "Access type for the indicator (e.g., public).",
+                    "type": "string"
+                },
+                "access_reason": {
+                    "description": "Reason for the access type.",
+                    "type": "string"
+                }
+            }
+        },
+        "pulse_info": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "description": "Number of pulses associated with the indicator.",
                     "type": "integer"
                 },
-                "numDistinctUsers": {
-                    "type": "integer"
-                },
-                "lastReportedAt": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "format": "date-time"
-                },
-                "reports": {
+                "pulses": {
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
-                            "reportedAt": {
+                            "id": {
+                                "description": "Unique identifier for the pulse.",
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "Name of the pulse.",
+                                "type": "string"
+                            },
+                            "description": {
+                                "description": "Description of the pulse.",
+                                "type": "string"
+                            },
+                            "modified": {
+                                "description": "Date and time when the pulse was last modified.",
                                 "type": "string",
                                 "format": "date-time"
                             },
-                            "comment": {
-                                "type": "string"
+                            "created": {
+                                "description": "Date and time when the pulse was created.",
+                                "type": "string",
+                                "format": "date-time"
                             },
-                            "categories": {
+                            "tags": {
+                                "description": "Tags associated with the pulse.",
                                 "type": "array",
                                 "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "references": {
+                                "description": "References (URLs) related to the pulse.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "url"
+                                }
+                            },
+                            "public": {
+                                "description": "Indicates if the pulse is public (1) or not (0).",
+                                "type": "integer"
+                            },
+                            "adversary": {
+                                "description": "Adversary associated with the pulse.",
+                                "type": "string"
+                            },
+                            "targeted_countries": {
+                                "description": "Countries targeted by the activity described in the pulse.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "malware_families": {
+                                "description": "Malware families associated with the pulse.",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "display_name": {
+                                            "type": "string"
+                                        },
+                                        "target": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "attack_ids": {
+                                "description": "MITRE ATT&CK IDs associated with the pulse.",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "display_name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "industries": {
+                                "description": "Industries targeted by the activity described in the pulse.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "TLP": {
+                                "description": "Traffic Light Protocol (TLP) level for the pulse.",
+                                "type": "string"
+                            },
+                            "cloned_from": {
+                                "description": "ID of the pulse this pulse was cloned from, if applicable.",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "export_count": {
+                                "description": "Number of times the pulse has been exported.",
+                                "type": "integer"
+                            },
+                            "upvotes_count": {
+                                "type": "integer"
+                            },
+                            "downvotes_count": {
+                                "type": "integer"
+                            },
+                            "votes_count": {
+                                "description": "Total number of votes for the pulse.",
+                                "type": "integer"
+                            },
+                            "locked": {
+                                "description": "Indicates if the pulse is locked.",
+                                "type": "boolean"
+                            },
+                            "pulse_source": {
+                                "description": "Source of the pulse (e.g., web, api).",
+                                "type": "string"
+                            },
+                            "validator_count": {
+                                "type": "integer"
+                            },
+                            "comment_count": {
+                                "description": "Number of comments on the pulse.",
+                                "type": "integer"
+                            },
+                            "follower_count": {
+                                "description": "Number of followers for the pulse.",
+                                "type": "integer"
+                            },
+                            "vote": {
+                                "description": "User's vote on the pulse.",
+                                "type": "integer"
+                            },
+                            "author": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "description": "Username of the pulse author.",
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "description": "ID of the pulse author.",
+                                        "type": "string"
+                                    },
+                                    "avatar_url": {
+                                        "description": "URL of the author's avatar.",
+                                        "type": "string",
+                                        "format": "url"
+                                    },
+                                    "is_subscribed": {
+                                        "description": "Indicates if the user is subscribed to the author.",
+                                        "type": "boolean"
+                                    },
+                                    "is_following": {
+                                        "description": "Indicates if the user is following the author.",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "username",
+                                    "id",
+                                    "avatar_url",
+                                    "is_subscribed",
+                                    "is_following"
+                                ]
+                            },
+                            "indicator_type_counts": {
+                                "description": "Counts of different indicator types within the pulse.",
+                                "type": "object",
+                                "additionalProperties": {
                                     "type": "integer"
                                 }
                             },
-                            "reporterId": {
+                            "indicator_count": {
+                                "description": "Total number of indicators in the pulse.",
                                 "type": "integer"
                             },
-                            "reporterCountryCode": {
+                            "is_author": {
+                                "description": "Indicates if the current user is the author of the pulse.",
+                                "type": "boolean"
+                            },
+                            "is_subscribing": {
+                                "description": "Indicates if the user is subscribing to the pulse, or null if not applicable.",
                                 "type": [
-                                    "string",
+                                    "boolean",
                                     "null"
                                 ]
                             },
-                            "reporterCountryName": {
-                                "type": [
-                                    "string",
-                                    "null"
-                                ]
+                            "subscriber_count": {
+                                "description": "Number of subscribers to the pulse.",
+                                "type": "integer"
+                            },
+                            "modified_text": {
+                                "description": "Human-readable text describing when the pulse was last modified.",
+                                "type": "string"
+                            },
+                            "is_modified": {
+                                "type": "boolean"
+                            },
+                            "groups": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            },
+                            "in_group": {
+                                "type": "boolean"
+                            },
+                            "threat_hunter_scannable": {
+                                "type": "boolean"
+                            },
+                            "threat_hunter_has_agents": {
+                                "type": "integer"
+                            },
+                            "related_indicator_type": {
+                                "type": "string"
+                            },
+                            "related_indicator_is_active": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name",
+                            "description",
+                            "modified",
+                            "created",
+                            "tags",
+                            "references",
+                            "public",
+                            "votes_count",
+                            "locked",
+                            "pulse_source",
+                            "author",
+                            "indicator_count",
+                            "is_author",
+                            "modified_text",
+                            "is_modified",
+                            "groups",
+                            "in_group",
+                            "threat_hunter_scannable",
+                            "threat_hunter_has_agents",
+                            "related_indicator_type",
+                            "related_indicator_is_active"
+                        ]
+                    }
+                },
+                "references": {
+                    "description": "List of reference URLs.",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "url"
+                    }
+                },
+                "related": {
+                    "type": "object",
+                    "properties": {
+                        "alienvault": {
+                            "type": "object",
+                            "properties": {
+                                "adversary": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "malware_families": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "industries": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "other": {
+                            "type": "object",
+                            "properties": {
+                                "adversary": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "malware_families": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "industries": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                     }
                 }
             },
             "required": [
-                "ipAddress",
-                "isPublic",
-                "ipVersion",
-                "abuseConfidenceScore",
-                "countryCode",
-                "isp",
-                "domain",
-                "hostnames",
-                "totalReports",
-                "numDistinctUsers"
+                "count",
+                "pulses",
+                "references"
             ]
+        },
+        "false_positive": {
+            "description": "Information about false positives (empty in this example).",
+            "type": "array",
+            "items": {}
+        },
+        "validation": {
+            "description": "Validation information (empty in this example).",
+            "type": "array",
+            "items": {}
+        },
+        "asn": {
+            "description": "Autonomous System Number (ASN) associated with the IP address.",
+            "type": "string"
+        },
+        "city_data": {
+            "description": "Indicates if city-level geolocation data is available.",
+            "type": "boolean"
+        },
+        "city": {
+            "description": "City associated with the IP address.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "region": {
+            "description": "Region associated with the IP address.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "continent_code": {
+            "description": "Continent code associated with the IP address.",
+            "type": "string"
+        },
+        "country_code3": {
+            "description": "Three-letter country code associated with the IP address.",
+            "type": "string"
+        },
+        "country_code2": {
+            "description": "Two-letter country code associated with the IP address.",
+            "type": "string"
+        },
+        "subdivision": {
+            "description": "Subdivision (e.g., state) associated with the IP address.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "latitude": {
+            "description": "Latitude coordinate of the IP address.",
+            "type": "number",
+            "format": "float"
+        },
+        "postal_code": {
+            "description": "Postal code associated with the IP address.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "longitude": {
+            "description": "Longitude coordinate of the IP address.",
+            "type": "number",
+            "format": "float"
+        },
+        "accuracy_radius": {
+            "description": "Accuracy radius of the geolocation data.",
+            "type": "integer"
+        },
+        "country_code": {
+            "description": "Country code associated with the IP address.",
+            "type": "string"
+        },
+        "country_name": {
+            "description": "Country name associated with the IP address.",
+            "type": "string"
+        },
+        "dma_code": {
+            "type": "integer"
+        },
+        "charset": {
+            "type": "integer"
+        },
+        "area_code": {
+            "type": "integer"
+        },
+        "flag_url": {
+            "description": "URL of the country flag image.",
+            "type": "string",
+            "format": "url"
+        },
+        "flag_title": {
+            "description": "Title for the country flag.",
+            "type": "string"
+        },
+        "sections": {
+            "description": "List of sections included in the response.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
         }
-    }
+    },
+    "required": [
+        "whois",
+        "reputation",
+        "indicator",
+        "type",
+        "type_title",
+        "base_indicator",
+        "pulse_info",
+        "false_positive",
+        "validation",
+        "asn",
+        "sections"
+    ]
 }
