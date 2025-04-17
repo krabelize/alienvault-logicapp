@@ -513,7 +513,6 @@
         "pulse_info",
         "false_positive",
         "validation",
-        "asn",
         "sections"
     ]
 }
